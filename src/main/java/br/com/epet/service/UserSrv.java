@@ -22,8 +22,8 @@ public class UserSrv {
 
     public User edit(Long id, User user) throws EpetException {
         User edit = this.find(id);
-        BeanUtils.copyProperties(edit, user, "id");
-        return edit;
+        BeanUtils.copyProperties(user, edit, "id");
+        return repo.save(edit);
     }
 
     public User find(Long id) throws EpetException {

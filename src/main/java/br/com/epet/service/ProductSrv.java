@@ -21,8 +21,8 @@ public class ProductSrv {
 
     public Product edit(Long id, Product product) throws EpetException {
         Product edit = this.find(id);
-        BeanUtils.copyProperties(edit, product, "id");
-        return edit;
+        BeanUtils.copyProperties(product, edit, "id");
+        return repo.save(edit);
     }
 
     public Product find(Long id) throws EpetException {

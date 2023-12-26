@@ -22,8 +22,8 @@ public class DepartmentSrv {
 
     public Department edit(Long id, Department department) throws EpetException {
         Department edit = this.find(id);
-        BeanUtils.copyProperties(edit, department, "id");
-        return edit;
+        BeanUtils.copyProperties(department, edit, "id");
+        return repo.save(edit);
     }
 
     public Department find(Long id) throws EpetException {

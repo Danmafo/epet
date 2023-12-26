@@ -20,8 +20,8 @@ public class ServiceSrv {
 
     public Service edit(Long id, Service service) throws EpetException {
         Service edit = this.find(id);
-        BeanUtils.copyProperties(edit, service, "id");
-        return edit;
+        BeanUtils.copyProperties(service, edit, "id");
+        return repo.save(edit);
     }
 
     public Service find(Long id) throws EpetException {
