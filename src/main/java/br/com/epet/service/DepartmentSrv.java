@@ -34,4 +34,7 @@ public class DepartmentSrv {
         return repo.findAll();
     }
 
+    public List<Department> listAll() {
+        return repo.findAll();
+    }
 }

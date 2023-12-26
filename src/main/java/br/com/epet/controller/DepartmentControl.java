@@ -49,4 +49,9 @@ public class DepartmentControl {
         return ResponseEntity.ok(new PageImpl<>(departmentListList.subList(start, end), pageable, departmentListList.size()));
     }
 
+    @GetMapping("/list")
+    public ResponseEntity<List<Department>> listAll() {
+        return ResponseEntity.ok(srv.listAll());
+    }
+
 }

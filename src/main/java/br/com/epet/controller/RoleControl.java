@@ -1,5 +1,6 @@
 package br.com.epet.controller;
 
+import br.com.epet.entity.Department;
 import br.com.epet.entity.Role;
 import br.com.epet.entity.Service;
 import br.com.epet.exception.EpetException;
@@ -48,6 +49,11 @@ public class RoleControl {
         int end = Math.min((start + pageable.getPageSize()), roleList.size());
 
         return ResponseEntity.ok(new PageImpl<>(roleList.subList(start, end), pageable, roleList.size()));
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<Role>> listAll() {
+        return ResponseEntity.ok(srv.listAll());
     }
 
 }

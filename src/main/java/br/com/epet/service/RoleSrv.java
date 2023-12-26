@@ -1,5 +1,6 @@
 package br.com.epet.service;
 
+import br.com.epet.entity.Department;
 import br.com.epet.entity.Product;
 import br.com.epet.entity.Role;
 import br.com.epet.exception.EpetException;
@@ -34,4 +35,7 @@ public class RoleSrv {
         return repo.findAll();
     }
 
+    public List<Role> listAll() {
+        return repo.findAll();
+    }
 }
