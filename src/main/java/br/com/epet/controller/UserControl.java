@@ -39,15 +39,10 @@ public class UserControl {
     @GetMapping
     public ResponseEntity<Page<User>> list(@RequestParam(defaultValue = "0") Integer page,
                                            @RequestParam(defaultValue = "10") Integer size,
-                                           @RequestParam String filtro) {
+                                           @RequestParam(defaultValue = "") String filtro) {
         Pageable pageable = PageRequest.of(page, size);
         
-        List<User> userList;
-        if (filtro == null) {
-            userList = srv.list();
-        } else {
-            userList = srv.listComFiltro(filtro);
-        }
+        List<User> userList = srv.listComFiltro(filtro);
 
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), userList.size());
