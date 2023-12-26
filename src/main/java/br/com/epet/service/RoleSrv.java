@@ -23,8 +23,8 @@ public class RoleSrv {
 
     public Role edit(Long id, Role role) throws EpetException {
         Role edit = this.find(id);
-        BeanUtils.copyProperties(edit, role, "id");
-        return edit;
+        BeanUtils.copyProperties(role, edit, "id");
+        return repo.save(edit);
     }
 
     public Role find(Long id) throws EpetException {
