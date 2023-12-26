@@ -38,9 +38,11 @@ public class ProductControl {
 
     @GetMapping
     public ResponseEntity<Page<Product>> list(@RequestParam(defaultValue = "0") Integer page,
-                                              @RequestParam(defaultValue = "10") Integer size) {
+                                              @RequestParam(defaultValue = "10") Integer size,
+                                              @RequestParam(defaultValue = "") String filtro) {
         Pageable pageable = PageRequest.of(page, size);
-        List<Product> productList = srv.list();
+    
+        List<Product> productList = srv.listComFiltro(filtro);
 
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), productList.size());

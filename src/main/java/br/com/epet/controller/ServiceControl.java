@@ -38,9 +38,10 @@ public class ServiceControl {
 
     @GetMapping
     public ResponseEntity<Page<Service>> list(@RequestParam(defaultValue = "0") Integer page,
-                                           @RequestParam(defaultValue = "10") Integer size) {
+                                           @RequestParam(defaultValue = "10") Integer size,
+                                           @RequestParam(defaultValue = "") String filtro) {
         Pageable pageable = PageRequest.of(page, size);
-        List<Service> serviceList = srv.list();
+        List<Service> serviceList = srv.listComFiltro(filtro);
 
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), serviceList.size());
