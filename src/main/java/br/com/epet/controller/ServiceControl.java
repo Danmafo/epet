@@ -1,6 +1,7 @@
 package br.com.epet.controller;
 
 import br.com.epet.entity.Service;
+import br.com.epet.exception.EpetException;
 import br.com.epet.service.ServiceSrv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,12 +27,12 @@ public class ServiceControl {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Service> edit(@PathVariable Long id, @RequestBody Service service) throws Exception {
+    public ResponseEntity<Service> edit(@PathVariable Long id, @RequestBody Service service) throws EpetException {
         return ResponseEntity.ok(srv.edit(id, service));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Service> find(@PathVariable Long id) throws Exception {
+    public ResponseEntity<Service> find(@PathVariable Long id) throws EpetException {
         return ResponseEntity.ok(srv.find(id));
     }
 

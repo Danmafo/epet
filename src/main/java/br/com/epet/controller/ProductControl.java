@@ -1,6 +1,7 @@
 package br.com.epet.controller;
 
 import br.com.epet.entity.Product;
+import br.com.epet.exception.EpetException;
 import br.com.epet.service.ProductSrv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,12 +27,12 @@ public class ProductControl {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> edit(@PathVariable Long id, @RequestBody Product product) throws Exception {
+    public ResponseEntity<Product> edit(@PathVariable Long id, @RequestBody Product product) throws EpetException {
         return ResponseEntity.ok(srv.edit(id, product));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> find(@PathVariable Long id) throws Exception {
+    public ResponseEntity<Product> find(@PathVariable Long id) throws EpetException {
         return ResponseEntity.ok(srv.find(id));
     }
 

@@ -2,6 +2,7 @@ package br.com.epet.controller;
 
 import br.com.epet.entity.Role;
 import br.com.epet.entity.Service;
+import br.com.epet.exception.EpetException;
 import br.com.epet.service.RoleSrv;
 import br.com.epet.service.ServiceSrv;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,12 @@ public class RoleControl {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Role> edit(@PathVariable Long id, @RequestBody Role role) throws Exception {
+    public ResponseEntity<Role> edit(@PathVariable Long id, @RequestBody Role role) throws EpetException {
         return ResponseEntity.ok(srv.edit(id, role));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Role> find(@PathVariable Long id) throws Exception {
+    public ResponseEntity<Role> find(@PathVariable Long id) throws EpetException {
         return ResponseEntity.ok(srv.find(id));
     }
 

@@ -2,6 +2,7 @@ package br.com.epet.controller;
 
 import br.com.epet.entity.Department;
 import br.com.epet.entity.Product;
+import br.com.epet.exception.EpetException;
 import br.com.epet.service.DepartmentSrv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,12 +28,12 @@ public class DepartmentControl {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Department> edit(@PathVariable Long id, @RequestBody Department department) throws Exception {
+    public ResponseEntity<Department> edit(@PathVariable Long id, @RequestBody Department department) throws EpetException {
         return ResponseEntity.ok(srv.edit(id, department));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Department> find(@PathVariable Long id) throws Exception {
+    public ResponseEntity<Department> find(@PathVariable Long id) throws EpetException {
         return ResponseEntity.ok(srv.find(id));
     }
 

@@ -1,6 +1,7 @@
 package br.com.epet.controller;
 
 import br.com.epet.entity.User;
+import br.com.epet.exception.EpetException;
 import br.com.epet.service.UserSrv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,12 +27,12 @@ public class UserControl {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> edit(@PathVariable Long id, @RequestBody User user) throws Exception {
+    public ResponseEntity<User> edit(@PathVariable Long id, @RequestBody User user) throws EpetException {
         return ResponseEntity.ok(srv.edit(id, user));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> find(@PathVariable Long id) throws Exception {
+    public ResponseEntity<User> find(@PathVariable Long id) throws EpetException {
         return ResponseEntity.ok(srv.find(id));
     }
 
@@ -45,6 +46,17 @@ public class UserControl {
         int end = Math.min((start + pageable.getPageSize()), userList.size());
 
         return ResponseEntity.ok(new PageImpl<>(userList.subList(start, end), pageable, userList.size()));
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<String> login(@RequestParam String username,
+                                        @RequestParam String password) throws EpetException {
+        if (srv.login(username, password)) {
+            return ResponseEntity.ok("Login success.");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials.");
+        }
+
     }
 
 }
