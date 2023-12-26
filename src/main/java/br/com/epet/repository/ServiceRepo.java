@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ServiceRepo extends JpaRepository<Service, Long> {
 
-    @Query("SELECT s FROM tb_service s" +
-            "where s.name LIKE %:filtro% ")
+    @Query("SELECT s FROM Service s " +
+            "where s.name LIKE %:filtro%")
     List<Service> findAllComFiltro(String filtro);
 }

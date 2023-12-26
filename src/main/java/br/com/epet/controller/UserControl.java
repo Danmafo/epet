@@ -1,6 +1,5 @@
 package br.com.epet.controller;
 
-import br.com.epet.entity.Product;
 import br.com.epet.entity.User;
 import br.com.epet.exception.EpetException;
 import br.com.epet.service.UserSrv;
