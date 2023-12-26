@@ -1,5 +1,6 @@
 package br.com.epet.service;
 
+import br.com.epet.entity.Product;
 import br.com.epet.entity.Service;
 import br.com.epet.exception.EpetException;
 import br.com.epet.repository.ServiceRepo;
@@ -30,6 +31,10 @@ public class ServiceSrv {
 
     public List<Service> list() {
         return repo.findAll();
+    }
+
+    public List<Service> listComFiltro(String filtro) {
+        return repo.findAllComFiltro(filtro);
     }
 
 }

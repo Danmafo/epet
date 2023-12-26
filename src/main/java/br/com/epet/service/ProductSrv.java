@@ -33,4 +33,8 @@ public class ProductSrv {
         return repo.findAll();
     }
 
+    public List<Product> listComFiltro(String filtro) {
+        return repo.findAllComFiltro(filtro);
+    }
+
 }

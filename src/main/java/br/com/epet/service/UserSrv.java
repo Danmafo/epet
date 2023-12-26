@@ -34,6 +34,10 @@ public class UserSrv {
         return repo.findAll();
     }
 
+    public List<User> listComFiltro(String filtro) {
+        return repo.findAllComFiltro(filtro);
+    }
+
     public Boolean login(String username, String password) throws EpetException {
         User user = repo.findByName(username).orElseThrow(() -> new EpetException("User not found."));
         if (!Objects.equals(user.getPassword(), password)) {

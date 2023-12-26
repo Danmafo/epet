@@ -1,5 +1,6 @@
 package br.com.epet.controller;
 
+import br.com.epet.entity.Product;
 import br.com.epet.entity.User;
 import br.com.epet.exception.EpetException;
 import br.com.epet.service.UserSrv;
@@ -38,9 +39,16 @@ public class UserControl {
 
     @GetMapping
     public ResponseEntity<Page<User>> list(@RequestParam(defaultValue = "0") Integer page,
-                                           @RequestParam(defaultValue = "10") Integer size) {
+                                           @RequestParam(defaultValue = "10") Integer size,
+                                           @RequestParam String filtro) {
         Pageable pageable = PageRequest.of(page, size);
-        List<User> userList = srv.list();
+        
+        List<User> userList;
+        if (filtro == null) {
+            userList = srv.list();
+        } else {
+            userList = srv.listComFiltro(filtro);
+        }
 
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), userList.size());
